@@ -49,8 +49,9 @@ class FirmsController extends Controller
         'email.email' => 'L\'adresse email n\'est pas valide',
         'email.unique' => 'L\'email renseigné existe déjà',
         'url.url' => 'L\'url n\'est pas valide',
-        'logo.image' => 'L\'image doit être au format jpg, jpeg, png ou gif',
-        'logo.max' => 'Le poids de l\'image doit être inférieur à 2Mb'
+        'logo.image' => 'Le logo doit être au format jpg, jpeg, png ou gif',
+        'logo.max' => 'Le poids du logo doit être inférieur à 2Mb',
+        'logo.dimensions' => 'Les dimensions du logo doivent être au minimum de 150px X 150px'
       ]);
 
       // Handle file upload
