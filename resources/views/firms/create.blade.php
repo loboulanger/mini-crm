@@ -12,7 +12,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-6">
-                <form method="POST" action="/firms">
+                <form method="POST" action="/firms" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
                     <div class="form-group">

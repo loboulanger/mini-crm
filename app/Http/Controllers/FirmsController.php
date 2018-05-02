@@ -40,15 +40,47 @@ class FirmsController extends Controller
       $rules = [
         'name' => 'required',
         'email' => 'nullable|email|unique:employees',
-        'url' => 'nullable|url'
+        'url' => 'nullable|url',
+        'logo' => 'nullable|mimes:jpg,jpeg,png,gif|max:1999'
       ];
 
       $validator = Validator::make($request->all(), $rules, [
         'name.required' => 'Vous devez renseigner un nom',
         'email.email' => 'L\'adresse email n\'est pas valide',
         'email.unique' => 'L\'email renseigné existe déjà',
-        'url.url' => 'L\'url n\'est pas valide'
+        'url.url' => 'L\'url n\'est pas valide',
+        'logo.image' => 'L\'image doit être au format jpg, jpeg, png ou gif',
+        'logo.max' => 'Le poids de l\'image doit être inférieur à 2Mb'
       ]);
+
+      // Handle file upload
+      if ($request->hasFile('logo')) {
+          // Get filename with extension
+          $FileNameWithExt = $request->file('logo')-> getClientOriginalName();
+          // Get just filename
+          $filename = pathinfo($FileNameWithExt, PATHINFO_FILENAME);
+          // Get just extension
+          $extension = $request->file('logo')->getClientOriginalExtension();
+          // Filename to store
+          $FileNameToStore =$filename . '_' . time() . '.' . $extension;
+
+          // Get firm's name
+          $FirmName = $request->input('name');
+
+          // Upload image
+          $path = $request->file('logo')->storeAs('firms/'.$FirmName, $FileNameToStore ,'public');
+      }
+      else {
+        $FileNameToStore = '-';
+      }
+
+      // Create Firm
+      $firm = new Firm;
+      $firm->name = $request->input('name');
+      $firm->email = $request->input('email');
+      $firm->url = $request->input('url');
+      $firm->logo = $FileNameToStore;
+      $firm->save();
 
       if ($validator->fails()) {
         return redirect('firms/create')
@@ -56,7 +88,7 @@ class FirmsController extends Controller
                     ->withInput();
       }
 
-      Firm::create(request(['name', 'email', 'url']));
+      // Firm::create(request(['name', 'email', 'url']));
 
       return redirect('/firms');
     }
