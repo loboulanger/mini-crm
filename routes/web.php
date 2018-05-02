@@ -32,3 +32,4 @@ Route::post('/employees', 'EmployeesController@store');
 
 Route::get('/firms/create', 'FirmsController@create');
 Route::post('/firms', 'FirmsController@store');
+Route::delete('/firms/{id}', 'FirmsController@destroy');

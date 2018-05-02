@@ -134,8 +134,10 @@ class FirmsController extends Controller
      * @param  \App\Firm  $firm
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Firm $firm)
-    {
-        //
+    public function destroy($id) {
+        Firm::destroy($id);
+        return response()->json([
+          'success' => 'Record has been deleted successfully!'
+        ]);
     }
 }

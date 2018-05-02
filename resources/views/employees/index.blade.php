@@ -29,7 +29,7 @@
                     <td>{{ $employee->lastname }}</td>
                     <td>{{ $employee->firstname }}</td>
                     {{-- <td>{{ $employee->firm_id }}</td> --}}
-                    <td>{{ $employee->firm->name }}</td>
+                    <td>{{ $employee->name }}</td>
                     <td>{{ $employee->email }}</td>
                     <td>{{ $employee->phone }}</td>
                     <td><button type="button" class="btn btn-dark btn-sm">Supprimer</button></td>

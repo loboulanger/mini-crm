@@ -29,7 +29,12 @@
                   <td>{{ $firm->email }}</td>
                   <td>{{ $firm->logo }}</td>
                   <td>{{ $firm->url }}</td>
-                  <td><button type="button" class="btn btn-dark btn-sm">Supprimer</button></td>
+                  <td>
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">
+                          Supprimer
+                      </button>
+                  </td>
                 </tr>
 
               @endforeach
@@ -39,11 +44,25 @@
         </div>
 
         {{ $firms->links() }}
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Supprimer une entreprise</h5>
+              </div>
+              <div class="modal-body">
+                Êtes-vous certain de vouloir supprimer '{{ $firm->name }}' ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal">Retour</button>
+                <button type="button" id="deleteFirm" class="btn btn-danger btn-sm" data-id="{{ $firm->id }}" data-token="{{ csrf_token() }}" data-dismiss="modal">Supprimer</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   </div>
-  @endsection
-
-  @section ('scripts')
-  <script src=""></script>
   @endsection
