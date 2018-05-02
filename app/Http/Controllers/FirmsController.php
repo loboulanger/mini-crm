@@ -41,7 +41,7 @@ class FirmsController extends Controller
         'name' => 'required',
         'email' => 'nullable|email|unique:employees',
         'url' => 'nullable|url',
-        'logo' => 'nullable|mimes:jpg,jpeg,png,gif|max:1999'
+        'logo' => 'nullable|mimes:jpg,jpeg,png,gif|max:1999|dimensions:min_width=150,min_height=150'
       ];
 
       $validator = Validator::make($request->all(), $rules, [
