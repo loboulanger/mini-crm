@@ -51,8 +51,8 @@ class EmployeesController extends Controller
         ];
 
         $validator = Validator::make($request->all(), $rules, [
-          'lastname.required' => 'Vous devez renseigner un prénom',
-          'firstname.required' => 'Vous devez renseigner un nom',
+          'lastname.required' => 'Vous devez renseigner un nom',
+          'firstname.required' => 'Vous devez renseigner un prénom',
           'firm_id.not_in' => 'Vous devez renseigner une entreprise',
           'email.email' => 'Vous devez renseigner un email valide',
           'email.unique' => 'L\'email renseigné existe déjà',

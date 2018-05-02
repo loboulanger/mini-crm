@@ -30,7 +30,8 @@
                         <select class="form-control" id="firm_id" name="firm_id">
                           <option value="0">Choisir...</option>
                           @foreach ($firms as $firm)
-                          <option value="{{ $firm->id }}">{{ $firm->name }} </option>
+
+                          <option value="{{ $firm->id }}" {{ $firm->id == old('firm_id') ? 'selected' : '' }}>{{ $firm->name }} </option>
                           @endforeach
                         </select>
                         <small id="email" class="form-text text-muted">Si l'entreprise de l'employé n'est pas dans la liste, vous devrez d'abord <a href="https://mini-crm.test/firms/create">ajouter l'entreprise</a> correspondante</small>
