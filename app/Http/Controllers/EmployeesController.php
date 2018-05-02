@@ -124,8 +124,11 @@ class EmployeesController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+      Employee::destroy($id);
+      return response()->json([
+        'success' => 'Record has been deleted successfully!'
+      ]);
     }
 }

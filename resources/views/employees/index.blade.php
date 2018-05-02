@@ -28,11 +28,15 @@
                    <td>{{ $employee->id }}</td>
                     <td>{{ $employee->lastname }}</td>
                     <td>{{ $employee->firstname }}</td>
-                    {{-- <td>{{ $employee->firm_id }}</td> --}}
                     <td>{{ $employee->name }}</td>
                     <td>{{ $employee->email }}</td>
                     <td>{{ $employee->phone }}</td>
-                    <td><button type="button" class="btn btn-dark btn-sm">Supprimer</button></td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">
+                            Supprimer
+                        </button>
+                    </td>
                   </tr>
                 @endforeach
 
@@ -41,6 +45,25 @@
         </div>
 
         {{ $employees->links() }}
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Supprimer un employé</h5>
+              </div>
+              <div class="modal-body">
+                Êtes-vous certain de vouloir supprimer '{{ $employee->firstname . ' ' .  $employee->lastname}}' ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal">Retour</button>
+                <button type="button" id="deleteEmployee" class="btn btn-danger btn-sm" data-id="{{ $employee->id }}" data-token="{{ csrf_token() }}" data-dismiss="modal">Supprimer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </main>
     </div>
   </div>

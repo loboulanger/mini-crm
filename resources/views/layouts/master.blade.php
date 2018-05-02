@@ -56,6 +56,29 @@
           });
         });
 
+        $("#deleteEmployee").click(function(){
+          var id = $(this).data("id");
+          var token = $(this).data("token");
+          $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+          $.ajax({
+              type: 'DELETE',
+              url: '/employees/'+id,
+              dataType: "JSON",
+              data: {
+                "id": id,
+                "_method": 'DELETE',
+                "_token": token,
+              },
+              success: function () {
+                location.reload(true);
+              }
+          });
+        });
+
 
     </script>
 
